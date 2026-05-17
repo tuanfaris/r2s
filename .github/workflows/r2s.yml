@@ -1,0 +1,38 @@
+name: Build NanoPi R2S Premium Firmware V3 Fixed
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y build-essential libncurses5-dev libncursesw5-dev zlib1g-dev gawk git gettext libssl-dev xsltproc rsync wget unzip python3 zstd
+
+      - name: Download ImmortalWrt ImageBuilder
+        run: |
+          wget -O imagebuilder.tar.zst https://downloads.immortalwrt.org/releases/25.12.0-rc2/targets/rockchip/armv8/immortalwrt-imagebuilder-25.12.0-rc2-rockchip-armv8.Linux-x86_64.tar.zst
+          tar --use-compress-program=unzstd -xf imagebuilder.tar.zst
+          mv immortalwrt-imagebuilder-25.12.0-rc2-rockchip-armv8.Linux-x86_64 imagebuilder
+
+      - name: Copy custom files
+        run: |
+          cp -a files imagebuilder/files
+
+      - name: Build firmware
+        run: |
+          cd imagebuilder
+          make image PROFILE="friendlyarm_nanopi-r2s" PACKAGES="$(cat ../configs/package-list.txt)" FILES="files" DISABLED_SERVICES="" V=s
+
+      - name: Upload firmware artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nanopi-r2s-premium-firmware-v3-fixed
+          path: imagebuilder/bin/targets/rockchip/armv8/*nanopi-r2s*.img.gz

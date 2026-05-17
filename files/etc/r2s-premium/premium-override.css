@@ -1,0 +1,169 @@
+/* R2S Premium V3 - CSS override appended after official bootstrap/cascade.css.
+   It must not replace LuCI layout CSS. */
+:root {
+  --r2s-bg: #07111f;
+  --r2s-bg2: #0b1b2e;
+  --r2s-card: rgba(15, 33, 55, .86);
+  --r2s-card2: rgba(20, 45, 74, .78);
+  --r2s-border: rgba(125, 211, 252, .25);
+  --r2s-border2: rgba(34, 197, 94, .22);
+  --r2s-text: #eaf6ff;
+  --r2s-muted: #a8bdcf;
+  --r2s-accent: #38bdf8;
+  --r2s-accent2: #22c55e;
+  --r2s-warn: #fbbf24;
+  --r2s-danger: #fb7185;
+  --r2s-shadow: 0 18px 45px rgba(0, 0, 0, .32);
+}
+html, body {
+  color: var(--r2s-text) !important;
+  background:
+    radial-gradient(circle at 10% 4%, rgba(56, 189, 248, .22), transparent 28rem),
+    radial-gradient(circle at 88% 12%, rgba(34, 197, 94, .14), transparent 26rem),
+    linear-gradient(135deg, var(--r2s-bg), var(--r2s-bg2) 62%, #06101d) !important;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+}
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 46px 46px;
+  opacity: .55;
+  z-index: -1;
+}
+a, .tabs a, .mainmenu a { color: #bdecff !important; }
+a:hover { color: #ffffff !important; text-decoration: none !important; }
+header, .header, #header, .navbar, .main > .main-left, .main-left {
+  background: rgba(6, 17, 31, .76) !important;
+  backdrop-filter: blur(14px);
+  border-color: var(--r2s-border) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, .25);
+}
+.brand, .brand a, .logo, #logo, header h1, .main-left h1 {
+  color: #fff !important;
+  font-weight: 900 !important;
+  letter-spacing: -.03em;
+}
+.main, #maincontent, .main-right, .main-content {
+  background: transparent !important;
+}
+#maincontent, .main-right {
+  padding: 18px !important;
+}
+.cbi-section, .panel, .table, table, fieldset, .alert-message, .alert, .modal, .modal-content,
+.node-main-login, .login, .login-page form, form[action*="admin"] {
+  background: var(--r2s-card) !important;
+  border: 1px solid var(--r2s-border) !important;
+  border-radius: 18px !important;
+  box-shadow: var(--r2s-shadow) !important;
+  color: var(--r2s-text) !important;
+}
+.cbi-section, fieldset, .panel, .modal-content { padding: 16px !important; }
+h1, h2, h3, h4, legend, .cbi-section legend {
+  color: #fff !important;
+  font-weight: 850 !important;
+  letter-spacing: -.025em;
+}
+.cbi-section h2, h2 {
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid rgba(125, 211, 252, .18) !important;
+}
+table, .table { overflow: hidden !important; border-collapse: separate !important; border-spacing: 0 !important; }
+tr, td, th { border-color: rgba(125, 211, 252, .14) !important; }
+th, thead td {
+  background: rgba(56, 189, 248, .13) !important;
+  color: #dff7ff !important;
+  font-weight: 800 !important;
+}
+td { color: var(--r2s-text) !important; }
+tr:nth-child(even) td { background: rgba(255, 255, 255, .025) !important; }
+tr:hover td { background: rgba(56, 189, 248, .08) !important; }
+input, select, textarea, .cbi-input-text, .cbi-input-password, .cbi-input-select {
+  background: rgba(3, 10, 20, .62) !important;
+  border: 1px solid rgba(125, 211, 252, .32) !important;
+  color: var(--r2s-text) !important;
+  border-radius: 12px !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04) !important;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none !important;
+  border-color: var(--r2s-accent) !important;
+  box-shadow: 0 0 0 3px rgba(56,189,248,.18) !important;
+}
+.btn, button, input[type="submit"], input[type="button"], .cbi-button, .cbi-button-apply, .cbi-button-save {
+  color: #04111f !important;
+  border: 0 !important;
+  border-radius: 13px !important;
+  font-weight: 800 !important;
+  background: linear-gradient(135deg, var(--r2s-accent), var(--r2s-accent2)) !important;
+  box-shadow: 0 12px 28px rgba(34,197,94,.18) !important;
+}
+.btn:hover, button:hover, input[type="submit"]:hover, .cbi-button:hover {
+  filter: brightness(1.08) !important;
+  transform: translateY(-1px);
+}
+.cbi-button-reset, .btn-danger, .cbi-button-remove {
+  color: #fff !important;
+  background: linear-gradient(135deg, #fb7185, #ef4444) !important;
+}
+.notice, .warning, .alert-message.warning, .alert-warning {
+  background: rgba(251, 191, 36, .14) !important;
+  border-color: rgba(251, 191, 36, .35) !important;
+  color: #fff3c4 !important;
+}
+.success, .alert-success {
+  background: rgba(34, 197, 94, .13) !important;
+  border-color: rgba(34, 197, 94, .32) !important;
+  color: #dcffe9 !important;
+}
+.error, .alert-danger {
+  background: rgba(251, 113, 133, .14) !important;
+  border-color: rgba(251, 113, 133, .34) !important;
+  color: #ffe4e9 !important;
+}
+.progress, .cbi-progressbar {
+  background: rgba(255, 255, 255, .09) !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(125, 211, 252, .16) !important;
+}
+.progressbar, .cbi-progressbar > div {
+  background: linear-gradient(90deg, var(--r2s-accent), var(--r2s-accent2)) !important;
+}
+ul.mainmenu, .mainmenu ul, .main-left ul, nav ul { list-style: none !important; padding-left: 8px !important; }
+ul.mainmenu li, .mainmenu li, .main-left li { margin: 4px 0 !important; }
+ul.mainmenu a, .mainmenu a, .main-left a {
+  display: block;
+  padding: 8px 10px !important;
+  border-radius: 12px !important;
+  color: #d9f3ff !important;
+}
+ul.mainmenu a:hover, .mainmenu a:hover, .main-left a:hover {
+  background: rgba(56, 189, 248, .12) !important;
+}
+.tabs, .cbi-tabmenu {
+  border: 0 !important;
+  background: rgba(255,255,255,.04) !important;
+  border-radius: 14px !important;
+  padding: 6px !important;
+}
+.tabs li, .cbi-tab { border-radius: 11px !important; }
+.tabs li.active, .cbi-tab-active {
+  background: rgba(56, 189, 248, .16) !important;
+  border-color: rgba(56, 189, 248, .25) !important;
+}
+#xhr_poll_status, .label, .badge {
+  border-radius: 999px !important;
+  background: rgba(56, 189, 248, .14) !important;
+  color: #dff7ff !important;
+  border: 1px solid rgba(56, 189, 248, .25) !important;
+}
+footer { color: var(--r2s-muted) !important; opacity: .85; }
+@media (max-width: 800px) {
+  #maincontent, .main-right { padding: 10px !important; }
+  .cbi-section, fieldset, .panel { border-radius: 14px !important; }
+}

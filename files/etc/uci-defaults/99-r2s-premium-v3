@@ -1,0 +1,23 @@
+#!/bin/sh
+# R2S Premium V3: keep official Bootstrap LuCI layout, then append premium CSS.
+# This avoids breaking LuCI 25.x / apk builds and avoids Lua template errors.
+
+uci -q set luci.main.mediaurlbase='/luci-static/bootstrap'
+uci -q commit luci
+
+CSS_SRC='/etc/r2s-premium/premium-override.css'
+CSS_DST='/www/luci-static/bootstrap/cascade.css'
+
+if [ -f "$CSS_SRC" ] && [ -f "$CSS_DST" ]; then
+    if ! grep -q 'R2S_PREMIUM_V3_START' "$CSS_DST" 2>/dev/null; then
+        {
+            echo ''
+            echo '/* R2S_PREMIUM_V3_START */'
+            cat "$CSS_SRC"
+            echo '/* R2S_PREMIUM_V3_END */'
+        } >> "$CSS_DST"
+    fi
+fi
+
+rm -rf /tmp/luci-* /tmp/luci-indexcache /tmp/luci-modulecache 2>/dev/null
+exit 0

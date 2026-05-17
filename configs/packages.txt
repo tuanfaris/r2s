@@ -1,0 +1,1 @@
+luci luci-ssl luci-base luci-mod-admin-full luci-theme-bootstrap dnsmasq-full smartdns luci-app-smartdns curl wget nano htop ca-bundle ca-certificates kmod-tun kmod-inet-diag iptables-nft luci-app-ttyd
